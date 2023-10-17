@@ -22,19 +22,35 @@
             </ol>
             <p>Before the script...</p>
 
-            <script>
-          
-          
-              alert("salam")
-           let obj ={};
-          obj.x="hello world"
-              console.log();
-              let j=0
-              while(j<3){
-                  alert("have a good day"+j)
-                  j++;
-              }
-            </script>
+            
+             <button id="tex" onclick="myfunc">"ادامه بدیم؟"</button>
+             <script>
+               
+               document.getElementById('tex').onclick = myfunc
+                function myfunc(){
+                    let state=confirm("ادامه بدیم؟ ");
+                 let i = 0;
+                 let obj = {};
+                 while(state == true)
+                 {
+                     let name=prompt("نام");
+                     let family=prompt("فامیل")
+                     obj[i]={
+                     fname:name,
+                     lname:family
+                     }
+                 let state=confirm("ادامه بدیم؟ ");
+                 i++;
+                }
+             
+                 }
+                 console.log(obj);
+             
+                
+           
+             
+               
+             </script>
         </body>
     </head>
 </html>
