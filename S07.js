@@ -1,39 +1,26 @@
 let http= require ('http');
-let port = (80);
+let fs= require ('fs');
+
+let port = (8090);
 let server = http.createServer(requestHandler);
 server.listen(port);
 console.log("server is running on port"+port);
 let headers ={'Content-Type':'Text/plane'};
 let headers_html ={'Content-Type':'Text/html'};
 let obj={
-x:function(response){
-console.log('montazeri')
-
-
-},
-y:function(response){
+home:function(response){
     console.log('mamad')
-    response.writeHead(200,headers_html);
-    response.write(`
-    <html>
-    <head>
-    <style>
-div{
-    background:green;
-    color:black;
-    width:200px;
-    height:200px;
-}
-    </style>
-    </head>
-    <body>
-    <div>
-    good by  <strong> Anyone </strong>
-    </div>
-    </body>
-</html>
-    `);
-    response.end();
+    fs.readFile("./s07.html",function(error , data){
+        if (error) {
+            console.log('we have error to load file');
+        } else {
+            response.writeHead(200,headers_html);
+            response.write(data);
+            response.end();
+
+        }
+    });
+
 
 }
 
@@ -43,8 +30,11 @@ function requestHandler(request,response){
 //console.log('request url:',request.url);
 //console.log('request method:',request.method);
 let firstpart= request.url.split('/')[1];
+console.log('sss',firstpart);
+if(firstpart !== 'favicon.ico'){
+    obj[firstpart](response);
+}
 
-obj [firstpart](response);
 
 
 
